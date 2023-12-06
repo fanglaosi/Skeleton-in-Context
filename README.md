@@ -45,7 +45,7 @@ We conduct extensive experiments to evaluate the effectiveness of our SiC on mul
 
 ## ✋Skeleton-in-Context
 
-![SiC](./assets/imgs/framework_00.jpg)
+![SiC](./assets/imgs/Framework_00.jpg)
 
 **Overall framework of our Skeleton-in-Context**. Specifically, we establish a skeleton bank by integrating training sets under different tasks, which contain a large amount of input-target pairs performing different tasks. Next, we randomly select a sample pair as the task-guided prompt (TGP) and a query input from the skeleton bank, undergo encoding, and concatenating, respectively, and then input them into the transformer in parallel. In particular, during this process, the query input and task-unified prompt (TUP) are combined to form a new query. After iterating n1 times, the TGP and query are aggregated through aggregation function and then input into the transformer for n2 iterations. Lastly, the second half of the model output is used as our prediction.
 

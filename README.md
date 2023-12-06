@@ -98,7 +98,7 @@ We visualize and compare the results of our SiC and the most recent SoTA model, 
 **The code will be released upon the acceptance of the submission.**
 
 ## Citation
-If you think Point-In-Context is helpful in your research, please consider referring Point-In-Context:
+If you think Skeleton-in-Context is helpful in your research, please consider referring Skeleton-in-Context:
 ```
 
 ```

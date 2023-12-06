@@ -54,8 +54,8 @@ We conduct extensive experiments to evaluate the effectiveness of our SiC on mul
 ### 1. In-context learning for unifying skeleton sequence modeling
 
 - The first work to explore the application of in-context learning in skeleton sequences.
-- A new framework for tackling multiple tasks (four tasks), which outperforms other multi-task-capable models re-structured from task-specific models.
-- Skeleton-in-Context solves the overfitting obstacle when using the previous training framework.
+- A new framework for tackling multiple tasks (four tasks), which outperforms other multi-task-capable models.
+- Skeleton-in-Context solves the overfitting problem that is encountered when using the masked-modeling-style training framework of existing methods.
 
 ### 2. New benchmark for skeleton-based multi-tasking
 
@@ -65,7 +65,7 @@ We conduct extensive experiments to evaluate the effectiveness of our SiC on mul
 
 - Surpasses other multi-task-capable models re-structured from multi-stage models or task-specific models.
 - Surpasses even task-specific models (siMLPe, EqMotion, STCFormer, GLA-GCN, MotionBERT) on some tasks.
-- Skeleton-in-Context can generalize to new datasets well, and perform unseen tasks when given customizing prompts.
+- Skeleton-in-Context can generalize to new datasets well, and perform unseen tasks when given customized prompts.
 
 ## 😃Visualization
 
@@ -77,17 +77,17 @@ In-context inference demo, including pose estimation, future pose estimation, jo
 ### 2. Generalization capability
 Our SiC can perform ❗**unseen tasks**❗ on the **same query sample** by customizing task-guided prompts.
 
-For a query sample belonging to pose estimation, SiC is able to predict and estimate future 3D motion according to the customizing prompt.
+For a query sample belonging to pose estimation, SiC is able to predict and estimate future 3D motion according to the customized prompt.
 
 ![visual](./assets/gifs/Generalization_capability_PE_to_FPE.gif)
 
-SiC can perform the motion in-between task when we provide a prompt that is masked by some frames.
+SiC can perform the motion in-between task (unseen) when we provide a prompt whose frames are partially masked.
 
 ![visual](./assets/gifs/Generalization_capability_JC_to_MIB.gif)
 
 
 ### 3. Comparison of visualization with [MotionBERT](https://motionbert.github.io/)
-We visualize and compare the results of our SiC and the most recent SoTA model, MotionBERT, which is re-structured as an end-to-end multi-task model for fair comparison. As highlighted in the following figure, our SiC can generate more accurate poses than MotionBERT according to the provided task-guided prompt (visible prompts or unseen prompts in the training set).
+We visualize and compare the results of our SiC and the most recent SoTA model, MotionBERT, which is re-structured as an end-to-end multi-task model for fair comparison. As highlighted in the following figure, our SiC can generate more accurate poses than MotionBERT according to the provided task-guided prompt (existing prompts or unseen prompts in the training set).
 
 ![visual](./assets/imgs/Visualization_main_00.jpg)
 

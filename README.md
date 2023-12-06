@@ -8,9 +8,9 @@
     ·
     <a href="https://github.com/fanglaosi/"><strong>Zhongbin Fang*</strong></a>
     ·
-    <a href="https://lxtgh.github.io/"><strong>Xiangtai Li</strong></a>
-    ·
     <a href="https://xialipku.github.io/"><strong>Xia Li</strong></a>
+    ·
+    <a href="https://lxtgh.github.io/"><strong>Xiangtai Li</strong></a>
     <br />
     <a href="https://www.crcv.ucf.edu/chenchen/"><strong>Chen Chen</strong></a>
     .

@@ -89,7 +89,7 @@ SiC can perform the motion in-between task when we provide a prompt that is mask
 ### 3. Comparison of visualization with [MotionBERT](https://motionbert.github.io/)
 We visualize and compare the results of our SiC and the most recent SoTA model, MotionBERT, which is re-structured as an end-to-end multi-task model for fair comparison. As highlighted in the following figure, our SiC can generate more accurate poses than MotionBERT according to the provided task-guided prompt (visible prompts or unseen prompts in the training set).
 
-![visual](./assets/imgs/visualization_main_00.jpg)
+![visual](./assets/imgs/Visualization_main_00.jpg)
 
 ![visual](./assets/imgs/Generalization_vis_00.jpg)
 

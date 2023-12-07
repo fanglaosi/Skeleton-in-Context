@@ -18,7 +18,7 @@
   </p>
 
   <p align="center">
-    <a href='https://arxiv.org/abs/2306.08659'>
+    <a href='https://arxiv.org/abs/2312.03703'>
       <img src='https://img.shields.io/badge/Paper-PDF-green?style=flat&logo=arXiv&logoColor=green' alt='arXiv PDF'>
     </a>
     <a href='https://github.com/fanglaosi/Skeleton-in-Context' style='padding-left: 0.5rem;'>
@@ -98,7 +98,7 @@ We visualize and compare the results of our SiC and the most recent SoTA model, 
 **The code will be released upon the acceptance of the submission.**
 
 ## Citation
-If you think Skeleton-in-Context is helpful in your research, please consider referring Skeleton-in-Context:
+If you think Skeleton-in-Context is helpful to your research, please consider citing Skeleton-in-Context:
 ```
 
 ```

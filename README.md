@@ -100,5 +100,10 @@ We visualize and compare the results of our SiC and the most recent SoTA model, 
 ## Citation
 If you think Skeleton-in-Context is helpful to your research, please consider citing Skeleton-in-Context:
 ```
-
+@article{wang2023skeleton,
+  title={Skeleton-in-Context: Unified Skeleton Sequence Modeling with In-Context Learning},
+  author={Wang, Xinshun and Fang, Zhongbin and Li, Xia and Li, Xiangtai and Chen, Chen and Liu, Mengyuan},
+  journal={arXiv preprint arXiv:2312.03703},
+  year={2023}
+}
 ```

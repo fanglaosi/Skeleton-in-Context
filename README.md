@@ -21,7 +21,7 @@
     <a href='https://arxiv.org/abs/2312.03703'>
       <img src='https://img.shields.io/badge/Paper-PDF-green?style=flat&logo=arXiv&logoColor=green' alt='arXiv PDF'>
     </a>
-    <a href='https://github.com/fanglaosi/Skeleton-in-Context' style='padding-left: 0.5rem;'>
+    <a href='https://bradleywang0416.github.io/skeletonincontext/' style='padding-left: 0.5rem;'>
       <img src='https://img.shields.io/badge/Project-Page-blue?style=flat&logo=Google%20chrome&logoColor=blue' alt='Project Page'>
     </a>
   </p>

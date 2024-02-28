@@ -2,7 +2,7 @@
 <p align="center">
   <h1 align="center">Skeleton-in-Context: Unified Skeleton Sequence Modeling with In-Context Learning</h1>
   <p align="center">
-    Arxiv, 2023
+    CVPR, 2024
     <br />
     <a href="https://github.com/BradleyWang0416/"><strong>Xinshun Wang*</strong></a>
     ·

@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">Skeleton-in-Context: Unified Skeleton Sequence Modeling<br />with In-Context Learning</h1>
+  <h1 align="center">Skeleton-in-Context: Unified Skeleton Sequence Modeling with In-Context Learning</h1>
   <p align="center">
     CVPR, 2024
     <br />

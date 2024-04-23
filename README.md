@@ -110,7 +110,7 @@ data/
 └── avg_pose.py
 ```
 
-## 3. Training Point-In-Context
+## 3. Training
 To train Skeleton-in-Context, run the following command:
 
 ```

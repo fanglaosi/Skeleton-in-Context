@@ -70,9 +70,9 @@ pip install -r requirements.txt
 
 There are 2 ways to prepare data:
 
-1. You can download ready-to-use data [here](https://drive.google.com), and unzip the files in ```data/``` (recommended).
+1. You can download ready-to-use data [here]([https://drive.google.com](https://drive.google.com/drive/folders/1NYsgUGdHzWFK_OPwVUm-cl8y-T1Q4MWG)), and unzip the files in ```data/``` (recommended).
 
-2. You can download source data [here](https://drive.google.com), and unzip the files in ```data/source_data/```, and pre-process the data yourself by running the following the lines:
+2. You can download source data [here] (To be released), and unzip the files in ```data/source_data/```, and pre-process the data yourself by running the following the lines:
 
 ```
 python data_gen/convert_h36m_PE.py

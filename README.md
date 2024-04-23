@@ -1,109 +1,169 @@
-<br />
 <p align="center">
-  <h1 align="center">Skeleton-in-Context: Unified Skeleton Sequence Modeling with In-Context Learning</h1>
+  <h1 align="center">Skeleton-in-Context: Unified Skeleton Sequence Modeling<br />with In-Context Learning</h1>
   <p align="center">
     CVPR, 2024
     <br />
     <a href="https://github.com/BradleyWang0416/"><strong>Xinshun Wang*</strong></a>
     ·
     <a href="https://github.com/fanglaosi/"><strong>Zhongbin Fang*</strong></a>
-    ·
+    <br />
     <a href="https://xialipku.github.io/"><strong>Xia Li</strong></a>
     ·
     <a href="https://lxtgh.github.io/"><strong>Xiangtai Li</strong></a>
-    <br />
+    ·
     <a href="https://www.crcv.ucf.edu/chenchen/"><strong>Chen Chen</strong></a>
-    .
+    ·
     <a href="https://www.ece.pku.edu.cn/info/1046/2596.htm"><strong>Mengyuan Liu✉</strong></a>
   </p>
 
   <p align="center">
-    <a href='https://arxiv.org/abs/2312.03703'>
+    <a href='https://arxiv.org/abs/2306.08659'>
       <img src='https://img.shields.io/badge/Paper-PDF-green?style=flat&logo=arXiv&logoColor=green' alt='arXiv PDF'>
     </a>
-    <a href='https://bradleywang0416.github.io/skeletonincontext/' style='padding-left: 0.5rem;'>
+    <a href='https://fanglaosi.github.io/Point-In-Context_Pages/' style='padding-left: 0.5rem;'>
       <img src='https://img.shields.io/badge/Project-Page-blue?style=flat&logo=Google%20chrome&logoColor=blue' alt='Project Page'>
     </a>
   </p>
 <br />
 
-❗❗❗ Our work is the **_first_** to explore in-context learning for unifying skeleton sequence modeling.
+This is the official PyTorch implementation of the paper "Skeleton-in-Context: Unified Skeleton Sequence Modeling with In-Context Learning" (CVPR 2024).
 
-![teaser](./assets/imgs/Teaser_v2_00.jpg)
+<div  align="center">    
+ <img src="./assets/imgs/Teaser_v2_00.jpg" width = 1000  align=center />
+</div>
 
-In-context learning in **(a)** image modeling, **(b)** point cloud modeling, and **(c)** skeleton sequence modeling (ours).
+<!-- ⭐ Our work is the **_first_** to explore in-context learning in 3D point clouds, including task definition, benchmark, and baseline models. -->
 
-## ☀️Abstract
+# 🙂News
+- [Apr 23, 2024] Code is released.
+- [Feb 27, 2024] Paper is accepted by CVPR 2024!
+- [Dec 07, 2023] Paper is released and GitHub repo is created.
 
-In-context learning provides a new perspective for multi-task modeling for vision and NLP.
-Under this setting, the model can perceive tasks from prompts and accomplish them without any extra task-specific head predictions or model finetuning.
-However, Skeleton sequence modeling via in-context learning remains unexplored.
-Directly applying existing in-context models from other areas onto skeleton sequences fails due to the inter-frame and cross-task pose similarity that makes it outstandingly hard to perceive the task correctly from a subtle context.
-To address this challenge, we propose Skeleton-in-Context (SiC), an effective framework for in-context skeleton sequence modeling. Our SiC is able to handle multiple skeleton-based tasks simultaneously after a single training process and accomplish each task from context according to the given prompt. It can further generalize to new, unseen tasks according to customized prompts.
-To facilitate context perception, we additionally propose a task-unified prompt, which adaptively learns tasks of different natures, such as partial joint-level generation, sequence-level prediction, or 2D-to-3D motion prediction.
-We conduct extensive experiments to evaluate the effectiveness of our SiC on multiple tasks, including motion prediction, pose estimation, joint completion, and future pose estimation. We also evaluate its generalization capability on unseen tasks such as motion-in-between. These experiments show that our model achieves state-of-the-art multi-task performance and even outperforms single-task methods on certain tasks.
+<!-- # ⚡Features
 
-## ✋Skeleton-in-Context
-
-![SiC](./assets/imgs/Framework_00.jpg)
-
-**Overall framework of our Skeleton-in-Context**. Specifically, we establish a skeleton bank by integrating training sets under different tasks, which contain a large amount of input-target pairs performing different tasks. Next, we randomly select a sample pair as the task-guided prompt (TGP) and a query input from the skeleton bank, undergo encoding, and concatenating, respectively, and then input them into the transformer in parallel. In particular, during this process, the query input and task-unified prompt (TUP) are combined to form a new query. After iterating n1 times, the TGP and query are aggregated through aggregation function and then input into the transformer for n2 iterations. Lastly, the second half of the model output is used as our prediction.
-
-## ⚡Features
-
-### 1. In-context learning for unifying skeleton sequence modeling
-
-- The first work to explore the application of in-context learning in skeleton sequences.
-- A new framework for tackling multiple tasks (four tasks), which outperforms other multi-task-capable models.
-- Skeleton-in-Context solves the overfitting problem that is encountered when using the masked-modeling-style training framework of existing methods.
-
-### 2. New benchmark for skeleton-based multi-tasking
-
-- A new multi-task benchmark for evaluating the capability of processing multiple skeleton-based tasks, including motion prediction, pose estimation, joint completion, and future pose estimation.
-
-### 3. Impressive performance and strong generalization capability
-
-- Surpasses other multi-task-capable models re-structured from multi-stage models or task-specific models.
-- Surpasses even task-specific models (siMLPe, EqMotion, STCFormer, GLA-GCN, MotionBERT) on some tasks.
-- Skeleton-in-Context can generalize to new datasets well, and perform unseen tasks when given customized prompts.
-
-## 😃Visualization
-
-### 1. In-context demo
-In-context inference demo, including pose estimation, future pose estimation, joint completion, and motion prediction.
-
-![MP_gif](./assets/gifs/PE_gif.gif) ![MP_gif](./assets/gifs/FPE_gif.gif) ![MP_gif](./assets/gifs/JC_gif.gif) ![MP_gif](./assets/gifs/MP_gif.gif)
-
-### 2. Generalization capability
-Our SiC can perform ❗**unseen tasks**❗ on the **same query sample** by customizing task-guided prompts.
-
-For a query sample belonging to pose estimation, SiC is able to predict and estimate future 3D motion according to the customized prompt.
-
-![visual](./assets/gifs/Generalization_capability_PE_to_FPE.gif)
-
-SiC can perform the motion in-between task (unseen) when we provide a prompt whose frames are partially masked.
-
-![visual](./assets/gifs/Generalization_capability_JC_to_MIB.gif)
+## In-context learning for 3D understanding
 
 
-### 3. Comparison of visualization with [MotionBERT](https://motionbert.github.io/)
-We visualize and compare the results of our SiC and the most recent SoTA model, MotionBERT, which is re-structured as an end-to-end multi-task model for fair comparison. As highlighted in the following figure, our SiC can generate more accurate poses than MotionBERT according to the provided task-guided prompt (existing prompts or unseen prompts in the training set).
+- The first work to explore the application of in-context learning in the 3D domain.
+- A new framework for tackling multiple tasks (four tasks), which are unified into the same input-output space.
+- Can improve the performance of our Point-In-Context (Sep & Cat) by selecting higher-quality prompts.
 
-![visual](./assets/imgs/Visualization_main_00.jpg)
+## New benchmark
 
-![visual](./assets/imgs/Generalization_vis_00.jpg)
+- A new multi-task benchmark for evaluating the capability of processing multiple tasks, including reconstruction, denoising, registration, and part segmentation.
 
-## ⬜Code
+## Strong performance
 
-**The code will be released upon the acceptance of the submission.**
+- Surpasses classical models (PointNet, DGCNN, PCT, PointMAE), which are equipped with multi-task heads.
+- Surpasses even task-specific models (PointNet, DGCNN, PCT) on registration when given higher-quality prompts. -->
 
-## Citation
-If you think Skeleton-in-Context is helpful to your research, please consider citing Skeleton-in-Context:
+# 😃Run
+
+## 1. Installation
+```
+conda create -n skeleton_in_context python=3.7 anaconda
+conda activate skeleton_in_context
+pip install -r requirements.txt
+```
+
+## 2. Data Preparation
+
+There are 2 ways to prepare data:
+
+1. You can download ready-to-use data [here](https://drive.google.com), and unzip the files in ```data/``` (recommended).
+
+2. You can download source data [here](https://drive.google.com), and unzip the files in ```data/source_data/```, and pre-process the data yourself by running the following the lines:
+
+```
+python data_gen/convert_h36m_PE.py
+python data_gen/convert_h36m_FPE.py
+python data_gen/convert_amass_MP.py
+python data_gen/convert_3dpw_MC.py
+python data_gen/calculate_avg_pose.py
+```
+
+The final data folder structure should look like this:
+```
+data/
+│
+├── 3DPW_MC/
+│   ├── train/
+│   └── test/
+│
+├── AMASS/
+│   ├── train/
+│   └── test/
+│
+├── H36M/
+|   ├── train/
+|   └── test/
+│
+├── H36M_FPE/
+|   ├── train/
+|   └── test/
+|
+├── source_data/
+|   ├── AMASS/
+|   ├── PW3D/
+|   └── H36M.pkl
+|
+└── avg_pose.py
+```
+
+## 3. Training Point-In-Context
+To train Skeleton-in-Context, run the following command:
+
+```
+CUDA_VISIBLE_DEVICES=<GPU> python train.py --config configs/default.yaml --checkpoint ckpt/[YOUR_EXP_NAME]
+```
+
+## 4. Evaluation
+To evaluate Skeleton-in-Context, run the following command:
+```
+CUDA_VISIBLE_DEVICES=<GPU> python train.py --config configs/default.yaml --evaluate ckpt/[YOUR_EXP_NAME]/[YOUR_CKPT]
+```
+For example:
+```
+CUDA_VISIBLE_DEVICES=<GPU> python train.py --config configs/default.yaml --evaluate ckpt/pretrained/latest_epoch.bin
+```
+
+
+# 📚Pretrained Models
+
+Coming soon
+<!-- | Name                                  | Params | Rec. (CD↓) | Deno. (CD↓) | Reg. (CD↓) | Part Seg. (mIOU↑) |
+|---------------------------------------|:------:|:----------:|:----------:|:---------:|:-----------------:|
+| [PIC-Sep](https://drive.google.com/file/d/1Dkq5V9LNNGBgxWcPo8tkWC05Yi7DCre3/view?usp=sharing)     | **28.9M**  |  **4.4**   |    **7.5**     |    **8.6**    |     **78.60**     |
+| [PIC-Cat](https://drive.google.com/file/d/1Dkq5V9LNNGBgxWcPo8tkWC05Yi7DCre3/view?usp=sharing) | **29.0M**  |  **4.9**   |    **6.0**     |   **14.4**    |     **79.75**     |
+
+> The above results are reimplemented  and are basically consistent with the results reported in the paper. -->
+
+<!-- # ✋Visualization
+In-context inference demo (part segmentation, denoising, registration). Our Point-In-Context is designed to perform various tasks on a given query point cloud, adapting its operations based on different prompt pairs. Notably, the PIC has the ability to accurately predict the correct point cloud, even when provided with a clean input point cloud for the denoising task.
+
+![in-context_demo](./assets/gifs/in-context_demo.gif)
+
+Visualization of predictions obtained by our PIC-Sep and their corresponding targets in different point cloud tasks.
+
+![visual](./assets/imgs/visualization_main_00.jpg) -->
+
+# License
+MIT License
+
+# Citation
+If you find our work useful in your research, please consider citing: 
 ```
 @article{wang2023skeleton,
   title={Skeleton-in-Context: Unified Skeleton Sequence Modeling with In-Context Learning},
   author={Wang, Xinshun and Fang, Zhongbin and Li, Xia and Li, Xiangtai and Chen, Chen and Liu, Mengyuan},
-  journal={arXiv preprint arXiv:2312.03703},
-  year={2023}
+  journal={},
+  year={2024}
 }
 ```
+
+# Acknowledgement
+
+This work is inspired by [Point-In-Context](https://github.com/fanglaosi/Point-In-Context/). The code
+for our work is built upon [MotionBERT](https://github.com/Walter0807/MotionBERT).
+Our tribute to these excellent works, and special thanks to the following works: [siMLPe](https://github.com/dulucas/siMLPe), [EqMotion](https://github.com/MediaBrain-SJTU/EqMotion), [STCFormer](https://github.com/zhenhuat/STCFormer), [GLA-GCN](https://github.com/bruceyo/GLA-GCN).
+<!-- Thanks to the following excellent works: [PointNet](https://github.com/fxia22/pointnet.pytorch), [DGCNN](https://github.com/WangYueFt/dgcnn), [PCT](https://github.com/MenghaoGuo/PCT), [Point-BERT](https://github.com/lulutang0608/Point-BERT), [ACT](https://github.com/RunpeiDong/ACT), [I2P-MAE](https://github.com/ZrrSkywalker/I2P-MAE), [ReCon](https://github.com/qizekun/ReCon);  -->

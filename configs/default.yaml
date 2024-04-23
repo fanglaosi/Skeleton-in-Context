@@ -1,0 +1,88 @@
+# Task custom param
+tasks: [PE, MP, MC, FPE]
+
+# Global task param. Do not change.
+task_to_flag: {'PE': 0, 'MP': 1, 'FPE': 2, 'MC': 3}
+flag_to_task: {'0': 'PE', '1': 'MP', '2': 'FPE', '3': 'MC'}
+task_metrics:
+    PE: [PE e1, PE e2]
+    MP: [MP]
+    FPE: [FPE]
+    MC: [MC]
+
+# Data
+use_partial_data: False
+# Uncomment and fill the lines below and set use_partial_data: True, if you want to create a subset of data as you wish, for quick debugging
+# partial_data:   
+#     datasets:
+#         PE: 
+#         MP: 
+#         FPE: 
+#         MC: 
+#     train_stride: 
+#     drop_ratios_MC: 
+#     sample_stride: 
+#     clip_len: 
+#     num_joints: 
+#     root_path:
+#     source_file_h36m:
+full_data:
+    datasets:
+        PE: H36M
+        MP: AMASS
+        FPE: H36M_FPE
+        MC: 3DPW_MC
+    train_stride: 16
+    sample_stride: 1
+    clip_len: 16
+    num_joints: 17
+    drop_ratios_MC: [0.4, 0.6]
+    root_path: data
+    source_file_h36m: source_data/H36M.pkl
+
+# Model
+backbone: SiC_staticTUP         # SiC_dynamicTUP (default); SiC_staticTUP
+maxlen: 16
+dim_in: 3
+dim_out: 3
+dim_feat: 256
+mlp_ratio: 2
+depth: 5
+dim_rep: 256
+num_heads: 8
+att_fuse: True
+
+# Traning
+epochs: 120
+batch_size: 100
+test_batch_size: 512
+dropout: 0.0
+learning_rate: 0.0002
+weight_decay: 0.01
+lr_decay: 0.99
+
+# Loss
+losses:
+  mpjpe: 1.
+  n_mpjpe: 0.
+  velocity: 0.
+  limb_var: 0.
+  limb_gt: 0.
+  angle: 0.
+  angle_velocity: 0.
+
+# Data processing
+rootrel_input: True
+rootrel_target_MP: True
+rootrel_target_PE: True
+rootrel_target_FPE: True
+flip_h36m_y_axis: False
+flip_h36mFPE_y_axis: False
+scale_h36m_skeleton: 2.0
+scale_h36mFPE_skeleton: 2.0
+
+# General
+no_eval: False
+
+# Unify skeletons from different datasets
+amass_to_h36m: [[2], [0], [3], [6], [1], [4], [7], [5], [8], [8,11], [11], [10], [13], [15], [9], [12], [14]]

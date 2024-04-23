@@ -156,8 +156,8 @@ If you find our work useful in your research, please consider citing:
 @article{wang2023skeleton,
   title={Skeleton-in-Context: Unified Skeleton Sequence Modeling with In-Context Learning},
   author={Wang, Xinshun and Fang, Zhongbin and Li, Xia and Li, Xiangtai and Chen, Chen and Liu, Mengyuan},
-  journal={},
-  year={2024}
+  journal={arXiv preprint arXiv:2312.03703},
+  year={2023}
 }
 ```
 

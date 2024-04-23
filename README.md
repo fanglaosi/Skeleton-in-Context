@@ -128,9 +128,9 @@ CUDA_VISIBLE_DEVICES=<GPU> python train.py --config configs/default.yaml --evalu
 ```
 
 
-# 📚Pretrained Models
+<!--# 📚Pretrained Models
 
-Coming soon
+Coming soon-->
 <!-- | Name                                  | Params | Rec. (CD↓) | Deno. (CD↓) | Reg. (CD↓) | Part Seg. (mIOU↑) |
 |---------------------------------------|:------:|:----------:|:----------:|:---------:|:-----------------:|
 | [PIC-Sep](https://drive.google.com/file/d/1Dkq5V9LNNGBgxWcPo8tkWC05Yi7DCre3/view?usp=sharing)     | **28.9M**  |  **4.4**   |    **7.5**     |    **8.6**    |     **78.60**     |

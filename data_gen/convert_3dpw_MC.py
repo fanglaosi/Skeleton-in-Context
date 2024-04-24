@@ -26,7 +26,7 @@ drop_ratios = [0.4,0.6]
 save_root_path = f'data/3DPW_MC'
 
 pw3d_anno_dir = 'data/source_data/PW3D/sequenceFiles/'
-root_dir = 'data/source_data/AMASS/'
+pw3d_support_dir = 'data/support_data/'
 target_length = 0
 
 def main():
@@ -34,7 +34,7 @@ def main():
 
 # ----------------------------------------------------------------------------- train -----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------- train -----------------------------------------------------------------------------
-    dataset_train = PW3D(pw3d_anno_dir=pw3d_anno_dir, root_dir=root_dir, input_length=input_length, target_length=target_length, split_name='train', shift_step=train_shift)
+    dataset_train = PW3D(pw3d_anno_dir=pw3d_anno_dir, pw3d_support_dir=pw3d_support_dir, input_length=input_length, target_length=target_length, split_name='train', shift_step=train_shift)
     print(f'Train sample count: {len(dataset_train)}')
 
     save_path = os.path.join(save_root_path, 'train')
@@ -54,7 +54,7 @@ def main():
 
 # ----------------------------------------------------------------------------- test -----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------- test -----------------------------------------------------------------------------
-    dataset_test = PW3D(pw3d_anno_dir=pw3d_anno_dir, root_dir=root_dir, input_length=input_length, target_length=target_length, split_name='test', shift_step=test_shift)
+    dataset_test = PW3D(pw3d_anno_dir=pw3d_anno_dir, pw3d_support_dir=pw3d_support_dir, input_length=input_length, target_length=target_length, split_name='test', shift_step=test_shift)
     print(f'Test sample count: {len(dataset_test)}')
     
     save_path = os.path.join(save_root_path, 'test')
@@ -86,11 +86,11 @@ def main():
 
 
 class PW3D(data.Dataset):
-    def __init__(self, pw3d_anno_dir, root_dir, input_length, target_length, split_name, shift_step, frame_interval=0, paired=True):
+    def __init__(self, pw3d_anno_dir, pw3d_support_dir, input_length, target_length, split_name, shift_step, frame_interval=0, paired=True):
         super(PW3D, self).__init__()
         self._split_name = split_name
         self._pw3d_anno_dir = pw3d_anno_dir
-        self._root_dir = root_dir
+        self._support_dir = pw3d_support_dir
 
         self._pw3d_file_names = self._get_pw3d_names()
 
@@ -124,7 +124,7 @@ class PW3D(data.Dataset):
 
     def _load_skeleton(self):
         skeleton_info = np.load(
-                os.path.join(self._root_dir, 'body_models', 'smpl_skeleton.npz')
+                os.path.join(self._support_dir, 'body_models', 'smpl_skeleton.npz')
                 )
         self.p3d0 = torch.from_numpy(skeleton_info['p3d0']).float()[:, :22]
         parents = skeleton_info['parents']

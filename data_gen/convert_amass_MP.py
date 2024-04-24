@@ -18,12 +18,12 @@ def main():
     train_shift = 20
     save_root_path = f"data/AMASS"
 
-    amass_anno_dir = 'data/source_data/AMASS/data/amass/'
-    amass_root_dir = 'data/source_data/AMASS'
+    amass_anno_dir = 'data/source_data/AMASS/'
+    amass_support_dir = 'data/support_data/'
     motion_dim = 54
 
     # --------------------------------------------- Train --------------------------------------------------------------------------
-    amass_dataset = AMASSDataset('train', amass_anno_dir, amass_root_dir, amass_input_length, amass_target_length, motion_dim, train_shift)
+    amass_dataset = AMASSDataset('train', amass_anno_dir, amass_support_dir, amass_input_length, amass_target_length, motion_dim, train_shift)
     print(f'Train sample count: {len(amass_dataset)}')
     save_path = os.path.join(save_root_path, 'train')
     if not os.path.exists(save_path):
@@ -45,7 +45,7 @@ def main():
             pickle.dump(data_dict, myprofile)
 
     # --------------------------------------------- Test --------------------------------------------------------------------------
-    amass_dataset_test = AMASSEval('test', amass_anno_dir, amass_root_dir, amass_input_length, amass_target_length, motion_dim, test_shift)
+    amass_dataset_test = AMASSEval('test', amass_anno_dir, amass_support_dir, amass_input_length, amass_target_length, motion_dim, test_shift)
     print(f'Test sample count: {len(amass_dataset_test)}')
     save_path = os.path.join(save_root_path, 'test')
     if not os.path.exists(save_path):
@@ -68,11 +68,11 @@ def main():
 
 
 class AMASSEval(data.Dataset):
-    def __init__(self, split_name, amass_anno_dir, root_dir, amass_input_length, amass_target_length, motion_dim, shift_step):
+    def __init__(self, split_name, amass_anno_dir, support_dir, amass_input_length, amass_target_length, motion_dim, shift_step):
         super(AMASSEval, self).__init__()
         self._split_name = split_name
         self._amass_anno_dir = amass_anno_dir
-        self._root_dir = root_dir
+        self._support_dir = support_dir
 
         self._amass_file_names = self._get_amass_names()
 
@@ -98,7 +98,7 @@ class AMASSEval(data.Dataset):
         assert self._split_name == 'test'
 
         seq_names += open(
-            os.path.join(self._amass_anno_dir, "amass_test.txt"), 'r'
+            os.path.join(self._support_dir, "amass_test.txt"), 'r'
             ).readlines()
 
         file_list = []
@@ -114,7 +114,7 @@ class AMASSEval(data.Dataset):
     def _load_skeleton(self):
 
         skeleton_info = np.load(
-                os.path.join(self._root_dir, 'body_models', 'smpl_skeleton.npz')
+                os.path.join(self._support_dir, 'body_models', 'smpl_skeleton.npz')
                 )
         self.p3d0 = torch.from_numpy(skeleton_info['p3d0']).float()
         parents = skeleton_info['parents']
@@ -165,7 +165,7 @@ class AMASSEval(data.Dataset):
 
 
 class AMASSDataset(data.Dataset):
-    def __init__(self, split_name, amass_anno_dir, root_dir, amass_input_length, amass_target_length, motion_dim, train_shift, data_aug=True):
+    def __init__(self, split_name, amass_anno_dir, support_dir, amass_input_length, amass_target_length, motion_dim, train_shift, data_aug=True):
         super(AMASSDataset, self).__init__()
         np.random.seed(0)
         if train_shift > 0:
@@ -174,7 +174,7 @@ class AMASSDataset(data.Dataset):
             self.shift_step = None
         self._split_name = split_name  
         self._data_aug = data_aug  
-        self._root_dir = root_dir
+        self._support_dir = support_dir
 
         self._amass_anno_dir = amass_anno_dir
 
@@ -196,15 +196,11 @@ class AMASSDataset(data.Dataset):
     def _get_amass_names(self):
         # create list
         seq_names = []
+        assert self._split_name == 'train'
 
-        if self._split_name == 'train':
-            seq_names += np.loadtxt(
-                os.path.join(self._amass_anno_dir.replace('amass', ''), "amass_train.txt"), dtype=str
-            ).tolist()
-        else:
-            seq_names += np.loadtxt(
-                os.path.join(self._amass_anno_dir.replace('amass', ''), "amass_test.txt"), dtype=str
-            ).tolist()
+        seq_names += np.loadtxt(
+            os.path.join(self._support_dir, "amass_train.txt"), dtype=str
+        ).tolist()
 
         file_list = []
         for dataset in seq_names:
@@ -218,7 +214,7 @@ class AMASSDataset(data.Dataset):
     def _load_skeleton(self):
 
         skeleton_info = np.load(
-            os.path.join(self._root_dir, 'body_models', 'smpl_skeleton.npz')
+            os.path.join(self._support_dir, 'body_models', 'smpl_skeleton.npz')
         )
         self.p3d0 = torch.from_numpy(skeleton_info['p3d0']).float()
         parents = skeleton_info['parents']

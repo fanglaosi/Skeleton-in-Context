@@ -67,7 +67,7 @@ def evaluate_future_pose_estimation(args, test_loader, model, epoch=None):
             if args.backbone == 'SiC_dynamicTUP':
                 rebuild, target = model(prompt_batch, query_batch, epoch)
             elif args.backbone == 'SiC_staticTUP':
-                avg_pose = torch.from_numpy(np.load(os.path.join(args.data.root_path, 'avg_pose.npy'))).float().cuda()
+                avg_pose = torch.from_numpy(np.load(os.path.join(args.data.root_path, 'support_data', 'avg_pose.npy'))).float().cuda()
                 avg_pose = avg_pose.unsqueeze(0).expand(batch_size, -1, -1, -1)
                 query_input = query_batch[:, :args.data.clip_len]
                 query_target = query_batch[:, args.data.clip_len:]
@@ -106,7 +106,7 @@ def evaluate_motion_completion(args, test_loader, model, epoch=None):
             if args.backbone == 'SiC_dynamicTUP':
                 rebuild, target = model(prompt_batch, query_batch, epoch)
             elif args.backbone == 'SiC_staticTUP':
-                avg_pose = torch.from_numpy(np.load(os.path.join(args.data.root_path, 'avg_pose.npy'))).float().cuda()
+                avg_pose = torch.from_numpy(np.load(os.path.join(args.data.root_path, 'support_data', 'avg_pose.npy'))).float().cuda()
                 avg_pose = avg_pose.unsqueeze(0).expand(batch_size, -1, -1, -1)
                 query_input = query_batch[:, :args.data.clip_len]
                 query_target = query_batch[:, args.data.clip_len:]
@@ -163,7 +163,7 @@ def evaluate_motion_prediction(args, test_loader, model, epoch=None):
             if args.backbone == 'SiC_dynamicTUP':
                 rebuild, target = model(prompt_batch, query_batch, epoch)
             elif args.backbone == 'SiC_staticTUP':
-                avg_pose = torch.from_numpy(np.load(os.path.join(args.data.root_path, 'avg_pose.npy'))).float().cuda()
+                avg_pose = torch.from_numpy(np.load(os.path.join(args.data.root_path, 'support_data', 'avg_pose.npy'))).float().cuda()
                 avg_pose = avg_pose.unsqueeze(0).expand(batch_size, -1, -1, -1)
                 query_input = query_batch[:, :args.data.clip_len]
                 query_target = query_batch[:, args.data.clip_len:]
@@ -202,7 +202,7 @@ def evaluate_pose_estimation(args, model_pos, test_loader, datareader, epoch=Non
             if args.backbone == 'SiC_dynamicTUP':
                 rebuild_part, target_part = model_pos(prompt_batch, query_batch, epoch)
             elif args.backbone == 'SiC_staticTUP':
-                avg_pose = torch.from_numpy(np.load(os.path.join(args.data.root_path, 'avg_pose.npy'))).float().cuda()
+                avg_pose = torch.from_numpy(np.load(os.path.join(args.data.root_path, 'support_data', 'avg_pose.npy'))).float().cuda()
                 avg_pose = avg_pose.unsqueeze(0).expand(batch_size, -1, -1, -1)
                 query_input = query_batch[:, :args.data.clip_len]
                 query_target = query_batch[:, args.data.clip_len:]
@@ -302,7 +302,7 @@ def train_epoch(args, model_pos, train_loader, losses, optimizer, epoch=None):
         if args.backbone == 'SiC_dynamicTUP':
             rebuild_part, target_part = model_pos(prompt_batch, query_batch, epoch)    # (N,T,17,3)
         elif args.backbone == 'SiC_staticTUP':
-            avg_pose = torch.from_numpy(np.load(os.path.join(args.data.root_path, 'avg_pose.npy'))).float().cuda()
+            avg_pose = torch.from_numpy(np.load(os.path.join(args.data.root_path, 'support_data', 'avg_pose.npy'))).float().cuda()
             avg_pose = avg_pose.unsqueeze(0).expand(batch_size, -1, -1, -1)
             query_input = query_batch[:, :args.data.clip_len]
             query_target = query_batch[:, args.data.clip_len:]

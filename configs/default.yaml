@@ -41,7 +41,7 @@ full_data:
     source_file_h36m: source_data/H36M.pkl
 
 # Model
-backbone: SiC_staticTUP         # SiC_dynamicTUP (default); SiC_staticTUP
+backbone: SiC_dynamicTUP         # SiC_dynamicTUP (default); SiC_staticTUP
 maxlen: 16
 dim_in: 3
 dim_out: 3
@@ -54,7 +54,7 @@ att_fuse: True
 
 # Traning
 epochs: 120
-batch_size: 100
+batch_size: 200
 test_batch_size: 512
 dropout: 0.0
 learning_rate: 0.0002

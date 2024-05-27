@@ -11,8 +11,6 @@
     ·
     <a href="https://lxtgh.github.io/"><strong>Xiangtai Li</strong></a>
     ·
-    <a href="https://www.crcv.ucf.edu/chenchen/"><strong>Chen Chen</strong></a>
-    ·
     <a href="https://www.ece.pku.edu.cn/info/1046/2596.htm"><strong>Mengyuan Liu✉</strong></a>
   </p>
 

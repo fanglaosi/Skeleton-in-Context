@@ -157,11 +157,12 @@ MIT License
 # Citation
 If you find our work useful in your research, please consider citing: 
 ```
-@article{wang2023skeleton,
-  title={Skeleton-in-Context: Unified Skeleton Sequence Modeling with In-Context Learning},
+@inproceedings{wang2024skeleton,
+  title={Skeleton-in-context: Unified skeleton sequence modeling with in-context learning},
   author={Wang, Xinshun and Fang, Zhongbin and Li, Xia and Li, Xiangtai and Chen, Chen and Liu, Mengyuan},
-  journal={arXiv preprint arXiv:2312.03703},
-  year={2023}
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer vision and Pattern Recognition},
+  pages={2436--2446},
+  year={2024}
 }
 ```
 
